@@ -9,14 +9,14 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    protected $table="usuarios";
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'nombre', 'correo', 'password',
     ];
 
     /**
@@ -34,6 +34,22 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime'
+        ,'admin'=>'boolean'
     ];
+
+    protected $primaryKey ='idUsuario';
+    
+    protected $maps=['name'   =>'nombre','email' =>'correo'];
+
+
+
+
+
+    /*public function getAdminAttrubute(){
+        return $this->role == 'admin';
+    }*/
+    public function isAdmin(){
+    	return $this->admin == true;
+    }
 }

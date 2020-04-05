@@ -1,4 +1,5 @@
 <?php
+use Symfony\Component\HttpFoundation\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,8 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::view('/admin/','/admin/dashboard')->name('admin_dashboard	');
+//Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');

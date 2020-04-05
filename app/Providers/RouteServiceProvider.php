@@ -21,7 +21,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/';
+    public const ADMIN = '/admin';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -30,7 +31,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Route::macro('invalidUrl',function($action){
+            $this->any('{any}',$action)
+            ->where('ant','.*')
+            ->fallback();
+        });
 
         parent::boot();
     }
@@ -45,6 +50,12 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+        
+        $this->mapAdminRoutes();
+
+        $this->mapClientesRoutes();
+
+        
 
         //
     }
@@ -77,4 +88,35 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
     }
+
+
+      /**
+     * Define the "admin" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection,
+     * require authentication and an admin user, etc.
+     *
+     * @return void
+     */
+    protected function mapAdminRoutes(){
+        Route::middleware(['web', 'auth', 'admin'])
+            ->namespace($this->namespace.'\Admin')
+            ->prefix('/admin')
+            ->group(base_path('routes/admin.php'));
+    }  
+
+     /**
+     * Define the "clientes" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection,
+     * require authentication and an admin user, etc.
+     *
+     * @return void
+     */
+    protected function mapClientesRoutes(){
+        Route::middleware(['web', 'auth','cliente'])
+            ->namespace($this->namespace.'\Cliente')
+            ->prefix('/clientes')
+            ->group(base_path('routes/clientes.php'));
+    }   
 }
