@@ -15,12 +15,12 @@
                 <div class="navbar-nav">
                 
                     @admin
-                        <a class="nav-item nav-link " href="{{ route('admin_dashboard') }}">
+                        <a class="nav-item nav-link  {{ Route::current()->uri == 'admin' ? 'active': '' }}" href="{{ route('admin.index') }}">
                             Administración
                         </a>
+                        <a class="nav-item nav-link " href="{{ route('admin.eventos')  }}">Eventos</a>
                     @endadmin
                     
-                    <a class="nav-item nav-link" href="#">Features</a>
                     <a class="nav-item nav-link" href="#">Pricing</a>
                     <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </div>
@@ -33,20 +33,10 @@
                         <a class="nav-item nav-link" href="{{ route('register') }}">Registrar</a>
                     </div>
                 @endguest
-                @auth
-                    <div class="navbar-nav ml-auto">
-                        <a class="nav-item nav-link " href="{{ route('index') }}">
-                            Bienvendi@: {{ auth()->user()->nombre }}
-                            <span class="sr-only"></span>
-                        </a>
-                        <form action="{{ route('logout') }}" method="POST" id="frmLogout">
-                            @csrf
-                            <a class="nav-item nav-link" id="link-logout" style="cursor: pointer;">
-                                Salir
-                            </a>
-                        </form>
-                    </div>
-                @endauth
+                
+                @include('compartidos._saludo')
+                
+                
             </div>
         </header>
     </div>

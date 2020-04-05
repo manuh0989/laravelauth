@@ -24,7 +24,15 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::if('admin',function(){
-            return auth()->check && auth()->user()->isAdmin();
+            return auth()->check() && auth()->user()->isAdmin();
+        });
+
+        Blade::if('user',function(){
+            return auth()->check() && !auth()->user()->isAdmin();
+        });
+
+        Blade::if('adminActive',function(){
+            return 'active';
         });
     }
 }
