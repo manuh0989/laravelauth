@@ -15,28 +15,54 @@
                 <div class="navbar-nav">
                 
                     @admin
-                        <a class="nav-item nav-link  {{ Route::current()->uri == 'admin' ? 'active': '' }}" href="{{ route('admin.index') }}">
-                            Administración
-                        </a>
-                        <a class="nav-item nav-link " href="{{ route('admin.eventos')  }}">Eventos</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" 
+                            href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Administración
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.posts') }}">
+                                    Posts
+                                </a>
+                                <a class="dropdown-item" href="{{ route('admin.eventos') }}">
+                                    Eventos
+                                </a>
+                            </div>
+                        </li>
                     @endadmin
                     
-                    <a class="nav-item nav-link" href="#">Pricing</a>
-                    <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <a class="nav-item nav-link {{  Route::current()->uri == '/' ? 'active': '' }}" 
+                    href="{{ route('post.index') }}">
+                        Posts
+                    </a>
                 </div>
+
                 @guest
                     <div class="navbar-nav ml-auto">
-                        <a class="nav-item nav-link " href="{{ route('login') }}">
-                            Iniciar sesion 
-                            <span class="sr-only"></span>
+                        <a class="nav-item nav-link" href="{{ route('register') }}">
+                            Registrar
                         </a>
-                        <a class="nav-item nav-link" href="{{ route('register') }}">Registrar</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ (url()->current() == '/login') ? 'active' : '' }}" 
+                            href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Inicio sesión
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('login') }}">
+                                    Usuario
+                                </a>
+                                <a class="dropdown-item" href="{{ route('admin.login') }}">
+                                    Administrador
+                                </a>
+                            </div>
+                        </li>
+                        
                     </div>
                 @endguest
-                
-                @include('compartidos._saludo')
-                
-                
+
+                @auth
+                    @include('compartidos._saludo')
+                @endauth
             </div>
         </header>
     </div>

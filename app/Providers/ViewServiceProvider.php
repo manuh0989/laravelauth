@@ -30,9 +30,5 @@ class ViewServiceProvider extends ServiceProvider
         Blade::if('user',function(){
             return auth()->check() && !auth()->user()->isAdmin();
         });
-
-        Blade::if('adminActive',function(){
-            return 'active';
-        });
     }
 }

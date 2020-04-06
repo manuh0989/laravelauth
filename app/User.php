@@ -39,17 +39,13 @@ class User extends Authenticatable
     ];
 
     protected $primaryKey ='idUsuario';
-    
+
     protected $maps=['name'   =>'nombre','email' =>'correo'];
-
-
-
-
 
     /*public function getAdminAttrubute(){
         return $this->role == 'admin';
     }*/
     public function isAdmin(){
-    	return false;
+        return $this->role === 'admin';
     }
 }

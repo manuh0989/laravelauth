@@ -9,7 +9,8 @@ class Admin extends Authenticatable
 	protected $fillable = [
         'nombre', 'correo', 'password',
     ];
-     public function isAdmin(){
+
+    public function isAdmin(){
     	return true;
     }
 }

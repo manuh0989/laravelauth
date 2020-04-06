@@ -17,5 +17,7 @@ class TipoUsuarioSeeder extends Seeder
     	TipoUsuario::create([
     		"tipoUsuario"=>"Vendedor"
     	]);
+
+
     }
 }

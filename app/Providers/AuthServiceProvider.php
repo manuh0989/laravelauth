@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+use App\{Post,User};
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('actualizar-post',function(User $user, Post $post){
+            return $user->isAdmin() || $user->idUsuario === $post->idUsuario;
+        });
     }
 }

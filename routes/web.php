@@ -12,9 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('auth:web,admin')->name('index');
+Route::get('/', 'PostController@index')
+->middleware(['web','auth:admin'])->name('post.index');
 
 Auth::routes();
 
@@ -23,6 +22,9 @@ Auth::routes();
 Route::get('admin/login','Admin\LoginController@showLoginForm')->name('admin.login');
 Route::post('admin/login','Admin\LoginController@login');
 Route::post('admin/logout','Admin\LoginController@logout')->name('admin.logout');
+
+
+
 
 
 

@@ -24,7 +24,11 @@
     </div>
 
     <script src="{{ asset('js/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('js/CKEditor/ckeditor.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'summary-ckeditor' );
+    </script>
 </body>
 </html>

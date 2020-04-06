@@ -13,28 +13,28 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        
+
         /*Schema::create('tipos_cliente', function (Blueprint $table) {
-            
+
         });*/
 
 
         Schema::create('usuarios', function (Blueprint $table) {
             $table->bigIncrements('idUsuario');
-            
-            
+
+
             $table->string('nombre');
             $table->string('correo')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             //$table->boolean('admin')->default(false);
-            //$table->string('role')->default('user');
+            $table->string('role')->default('user');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
 
 
-        
+
         });
     }
 
