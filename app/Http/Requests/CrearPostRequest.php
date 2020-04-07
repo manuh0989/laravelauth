@@ -37,7 +37,7 @@ class CrearPostRequest extends FormRequest
          DB::transaction(function (){
             $post=Post::create([
                 'titulo'     =>$this->titulo
-                ,'contenido' =>$this->encodeBase64Post()
+                ,'contenido' =>Post::encodeBase64Post($this->contenido)
                 ,'idUsuario' =>auth()->user()->idAdmin
                 ,'principal' =>$this->isPrincipal()
             ]);

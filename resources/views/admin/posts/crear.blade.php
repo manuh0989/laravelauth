@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+	@include('admin.posts._menuPost')
 	<div class="row d-flex pt-4  mt-5 justify-content-center">
 		<div class="col-8">
 			@if (session('alert'))

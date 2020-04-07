@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link href="{{ asset('css/bootstrap/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/normalize/normalize.css') }}" rel="stylesheet">
 </head>
@@ -25,9 +26,11 @@
 
     <script src="{{ asset('js/jquery/jquery.js') }}"></script>
     <script src="{{ asset('js/CKEditor/ckeditor.js') }}"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
+
         CKEDITOR.replace( 'summary-ckeditor' );
     </script>
 </body>

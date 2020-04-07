@@ -18,6 +18,29 @@ class Post extends Model
 
 	protected $guarded=[];
 
+	public function isPublicado(){
+		return $this->publicado === true ? 1 : 0;
+	}
+
+	public function isPrincipal(){
+		return $this->principal === true ? 1 : 0;
+	}
+
+
+	public function encodeBase64Post($contenido){
+        return base64_encode(htmlentities($contenido));
+    }
+
+    public function decodeBase64Post($contenido){
+        return html_entity_decode(base64_decode($contenido),ENT_COMPAT);
+    }
+
+    public function readMoreContenido(){
+		$this->contenido =$this->decodeBase64Post($this->contenido);
+		$this->contenido =substr(strip_tags($this->contenido), 0, 500);
+
+    	return $this->contenido;
+    }
 
 	public function scopePrincipal($query){
 		$query
